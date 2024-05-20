@@ -39,6 +39,7 @@ class UserController extends Controller
         $user = User::find($request->user_id);
 
         $user->skills()->attach($request->skills);
+        return back();
     }
 }
 

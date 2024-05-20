@@ -15,6 +15,7 @@ class SkillController extends Controller
    public function create_skills(Request $request){
 
     $request->validate([
+        'skill_name' =>'unique:skills,name',
         'skill_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 // dd($request->image);
