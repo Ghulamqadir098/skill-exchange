@@ -65,7 +65,7 @@ Composer
 MySQL/PostgreSQL
 Steps
 (1)Clone the Repository
-git clone https://github.com/yourusername/skill-exchange.git
+git clone https://github.com/Ghulamqadir098/skill-exchange.git
 cd skill-exchange
 
 (2)Backend Setup (Laravel)
