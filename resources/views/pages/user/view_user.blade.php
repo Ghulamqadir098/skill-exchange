@@ -25,6 +25,9 @@
     <td>
       <a class="btn btn-sm btn-danger" href="{{route('delete_user',$item->id)}}">Delete</a>
     </td>
+    <td>
+      <a class="btn btn-sm btn-info" href="{{route('add_Skills',$item->id)}}">Add Skill</a>
+    </td>
   </tr>   
 @endforeach
 
