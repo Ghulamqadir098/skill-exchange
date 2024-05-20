@@ -1,66 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Skill Exchange Platform
+Introduction
+Skill Exchange is a web platform that allows users to exchange their skills with each other. Users can offer their expertise in various areas, find others with the skills they need, and facilitate skill exchanges through messaging and reviews. This project is built with React.js for the front end and Laravel for the backend and admin dashboard.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Features
 
-## About Laravel
+User Authentication: Secure registration and login for users.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Skill Listings: Users can create and browse skill listings.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Messaging System: Users can communicate via an internal messaging system.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Reviews and Ratings: Users can review and rate each other after exchanges.
 
-## Learning Laravel
+Notifications: Users receive notifications for important events.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Search and Filtering: Users can search and filter skill listings by categories and location.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Models
+User Model
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Stores user information such as username, email, password hash, profile picture, and user settings/preferences.
+Skill Model
 
-## Laravel Sponsors
+Defines various skills that users can offer or seek with attributes such as name, description, category, and proficiency level.
+Listing Model
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Represents listings created by users who are offering or seeking skills with attributes such as title, description, skill(s) being offered or sought, preferred communication method, and availability.
+Message Model
 
-### Premium Partners
+Stores messages exchanged between users, including attributes such as sender, receiver, message content, timestamps, and read status.
+Review Model
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Allows users to leave reviews and ratings for each other post skill exchange, including attributes such as reviewer, reviewed user, rating, review content, and timestamps.
+Notification Model
 
-## Contributing
+Manages user notifications for new messages, reviews, skill exchange requests, etc., with attributes such as recipient, notification type, content, and read status.
+Transaction Model
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Tracks payments, invoices, and transaction statuses if the platform involves monetary transactions.
+Category Model
 
-## Code of Conduct
+Organizes skills into categories to simplify browsing and searching, with attributes such as category name and description.
+Location Model
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Stores geographic information for location-based searching or filtering, including city, state, country, and latitude/longitude coordinates.
+Bookmark Model
 
-## Security Vulnerabilities
+Allows users to bookmark listings or profiles for future reference, including attributes such as user, bookmarked item, and timestamps.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Technologies Used
+Frontend: React.js
+Backend: Laravel
+Database: MySQL/PostgreSQL
+Authentication: JWT (JSON Web Tokens)
+Styling: CSS/SASS
+Version Control: Git and GitHub
+Installation
 
-## License
+Prerequisites
+Node.js
+NPM/Yarn
+PHP
+Composer
+MySQL/PostgreSQL
+Steps
+(1)Clone the Repository
+git clone https://github.com/Ghulamqadir098/skill-exchange.git
+cd skill-exchange
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+(2)Backend Setup (Laravel)
+Navigate to the backend directory and install dependencies:
+
+
+cd backend
+composer install
+cp .env.example .env
+php artisan key:generate
+
+Set up your database and update .env with your database credentials.
+
+Run migrations:
+
+php artisan migrate
+php artisan db:seed
+
+(3)Frontend Setup (React)
+Navigate to the frontend directory and install dependencies:
+
+
+cd ../frontend
+npm install
+
+(4)Running the Application
+Start the Laravel server:
+
+cd backend
+php artisan serve
+In a new terminal window, start the React development server:
+
+cd frontend
+npm start
+Usage
+Register a new user account.
+Create a skill listing.
+Browse skill listings.
+
+Complete a skill exchange and leave a review.
+Contributing
+We welcome contributions! Please fork the repository and create a pull request with your changes. Ensure your code follows the project's coding standards and includes appropriate tests.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Contact
+If you have any questions or suggestions, feel free to open an issue or contact us at [your email].
