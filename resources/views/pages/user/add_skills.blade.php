@@ -17,6 +17,11 @@
                             <option value="{{ $skill->id }}">{{ $skill->name }}</option>
                         @endforeach
                     </select>
+                    @if ($errors->has('skills'))
+                    <span class="text-danger">{{ $errors->first('skills') }}</span>
+                    @endif
+
+            
                 </div>
             </div>
             <div class="card-footer text-end">

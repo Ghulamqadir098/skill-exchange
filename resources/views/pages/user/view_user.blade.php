@@ -7,7 +7,7 @@
         <th>Title</th>
         <th>Email</th>
         <th>Role</th>
-        <th class="w-1"></th>
+        <th class="w-1">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -22,12 +22,12 @@
     <td class="text-muted">
       User
     </td>
-    <td>
-      <a class="btn btn-sm btn-danger" href="{{route('delete_user',$item->id)}}">Delete</a>
-    </td>
-    <td>
+    <td class="d-flex flex-row">
+      <a class="btn btn-sm btn-danger mx-2" href="{{route('delete_user',$item->id)}}">Delete</a>
+     
       <a class="btn btn-sm btn-info" href="{{route('add_Skills',$item->id)}}">Add Skill</a>
-    </td>
+    
+    </td>  
   </tr>   
 @endforeach
 

@@ -35,7 +35,10 @@ class UserController extends Controller
 
     public function save_skills(Request $request){
         // dd($request->all());
-    
+        // $request->validate([
+        //     'skills' =>'unique:{skills},id'
+        // ]);
+
         $user = User::find($request->user_id);
 
         $user->skills()->attach($request->skills);
