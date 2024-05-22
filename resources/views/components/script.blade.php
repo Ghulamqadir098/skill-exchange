@@ -6,6 +6,7 @@
  <!-- Tabler Core -->
  <script src="{{asset('./dist/js/tabler.min.js?1684106062')}}" defer></script>
  <script src="{{asset('./dist/js/demo.min.js?1684106062')}}" defer></script>
+ <script src="https://kit.fontawesome.com/6494ce7a74.js" crossorigin="anonymous"></script>
  <script>
    // @formatter:off
    document.addEventListener("DOMContentLoaded", function () {
@@ -594,4 +595,7 @@
        })).render();
    });
    // @formatter:on
+
+
  </script>
+

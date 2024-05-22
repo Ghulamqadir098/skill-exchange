@@ -22,6 +22,8 @@ class SkillController extends Controller
     $imageName = time().'.'.$request->skill_image->extension();
     $request->skill_image->move(storage_path('app/public/images'), $imageName);
     $skill= new Skill;
+    $skill->icon_classes=$request->skill_icon_class;
+    $skill->color=$request->skill_icon_color;
     $skill->name= $request->skill_name;
     $skill->image= 'images/' . $imageName;
     $skill->save();
