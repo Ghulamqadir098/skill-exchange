@@ -31,12 +31,6 @@
                 aria-describedby="iconHelp">
             <div id="iconHelp" class="form-text">You can add a skill icon from here to show on the front-end of your site
             </div>
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-sm btn-success mt-2" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-                Select Icons
-            </button>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
