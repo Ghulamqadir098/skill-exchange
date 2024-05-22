@@ -7,7 +7,8 @@
             <label for="skillName" class="form-label">Add Skill</label>
             <div class="input-group">
                 <input type="text" name="skill_name" class="form-control" id="skillName" aria-describedby="skillHelp">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="searchIcons()">Search Icons</button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    onclick="searchIcons()">Search Icons</button>
             </div>
             <div id="skillHelp" class="form-text">You can add a skill from here to show on the front-end of your site</div>
             @if ($errors->has('skill_name'))
@@ -18,17 +19,22 @@
         <div class="mb-3">
             <label for="skillImage" class="form-label">Add Skill Image</label>
             <input type="file" name="skill_image" class="form-control" id="skillImage" aria-describedby="imageHelp">
-            <div id="imageHelp" class="form-text">You can add a skill image from here to show on the front-end of your site</div>
+            <div id="imageHelp" class="form-text">You can add a skill image from here to show on the front-end of your site
+            </div>
         </div>
 
         <div class="mb-3">
             <label for="skillIcon" class="form-label">Add Skill Icon</label>
-            <input type="text" name="skill_icon_class" id="input1" readonly class="form-control" aria-describedby="iconHelp">
-            <input type="text" name="skill_icon_color" id="input2" readonly class="form-control" aria-describedby="iconHelp">
-            <div id="iconHelp" class="form-text">You can add a skill icon from here to show on the front-end of your site</div>
+            <input type="text" name="skill_icon_class" id="input1" readonly class="form-control"
+                aria-describedby="iconHelp">
+            <input type="text" name="skill_icon_color" id="input2" readonly class="form-control"
+                aria-describedby="iconHelp">
+            <div id="iconHelp" class="form-text">You can add a skill icon from here to show on the front-end of your site
+            </div>
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-sm btn-success mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-sm btn-success mt-2" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
                 Select Icons
             </button>
         </div>
@@ -46,35 +52,45 @@
                 </div>
                 <div class="modal-body">
                     <span class="mx-2">
-                        <i class="fas fa-code" id="firstitem" onclick="handelClick2(this.id, this.style.color)" style="color: #fb79c5;"></i>
+                        <i class="fas fa-code" id="firstitem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #fb79c5;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-brands fa-laravel" id="seconditem" onclick="handelClick2(this.id, this.style.color)" style="color: #ff0000;"></i>
+                        <i class="fa-brands fa-laravel" id="seconditem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #ff0000;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-brands fa-react" id="thirdtitem" onclick="handelClick2(this.id, this.style.color)" style="color: #63E6BE;"></i>
+                        <i class="fa-brands fa-react" id="thirdtitem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #63E6BE;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-brands fa-bitcoin" id="fourthitem" onclick="handelClick2(this.id, this.style.color)" style="color: #FFD43B;"></i>
+                        <i class="fa-brands fa-bitcoin" id="fourthitem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #FFD43B;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-solid fa-music" id="fifthitem" onclick="handelClick2(this.id, this.style.color)" style="color: #B197FC;"></i>
+                        <i class="fa-solid fa-music" id="fifthitem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #B197FC;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-solid fa-heart" id="sixthitem" onclick="handelClick2(this.id, this.style.color)" style="color: #e16bd1;"></i>
+                        <i class="fa-solid fa-heart" id="sixthitem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #e16bd1;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-solid fa-bowl-food" id="seventhitem" onclick="handelClick2(this.id, this.style.color)" style="color: #fb98b6;"></i>
+                        <i class="fa-solid fa-bowl-food" id="seventhitem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #fb98b6;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-solid fa-microchip" id="eigthitem" onclick="handelClick2(this.id, this.style.color)" style="color: #000000;"></i>
+                        <i class="fa-solid fa-microchip" id="eigthitem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #000000;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-solid fa-person-swimming" id="ninthitem" onclick="handelClick2(this.id, this.style.color)" style="color: #74C0FC;"></i>
+                        <i class="fa-solid fa-person-swimming" id="ninthitem"
+                            onclick="handelClick2(this.id, this.style.color)" style="color: #74C0FC;"></i>
                     </span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Select</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        aria-label="Close">Select</button>
                 </div>
             </div>
         </div>
@@ -92,7 +108,7 @@
             icons.forEach(icon => {
                 // Get the class name of the icon and convert to lower case
                 const iconClass = icon.className.toLowerCase();
-                
+
                 // Check if the icon class includes the search query
                 if (iconClass.includes(query)) {
                     icon.parentElement.style.display = 'inline-block'; // Show the icon
