@@ -41,8 +41,9 @@ return view('pages.skill.view_skill',compact('skill'));
 public function delete_skills($id){
 
     $skill= Skill::findOrFail($id);
-    Storage::disk('public')->delete($skill->image);
    $skill->delete();
+   Storage::disk('public')->delete($skill->image);
+
    return back()->with('success', 'You have successfully deleted a skill');
 }
 

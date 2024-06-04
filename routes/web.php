@@ -12,6 +12,9 @@ Route::get('/{any}', function () {
 
 
 Route::prefix('admin')->group(function () {
+
+
+    
     Route::get('/', function () {
         return view('./pages/admin/admin');
     })->name('admin_dash');

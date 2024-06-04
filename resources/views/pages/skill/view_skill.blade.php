@@ -16,7 +16,12 @@
       <tr>
         <th>{{$skill->id}}</th>
         <td>{{$skill->name}}</td>
-        <td>{{$skill->image}}</td>
+        <td>
+{{-- {{dd($skill->image)}} --}}
+<img src="{{asset('storage/'.$skill->image)}}" height="50px" width="50px" alt="Img">
+
+
+        </td>
         <td>
        <a class="btn btn-sm btn-danger " href="{{route('delete_skills',$skill->id)}}">Delete</a>
         </td>
