@@ -1,6 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
+// import  useHistory  from 'react-router-dom';
+import { createBrowserHistory } from '@remix-run/router';
 import ImagesData from '../../assets/images/signup_images.json'
+import axios from 'axios';
+import { redirect, useNavigate } from 'react-router-dom';
 function Signup() {
+
+const[user_name, SetUserName]=useState('');
+const[name, SetName]=useState('');
+const[email, SetEmail]=useState('');
+const[password, SetPassword]=useState('');
+const[profile_image, SetProfileImage]=useState('');
+const navigate= useNavigate();
+
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.post('http://localhost:8000/api/register', {
+            name,
+            user_name,
+            email,
+            password,
+            profile_image
+        });
+        alert('Registration successful. Token: ' + response.data.token);
+        navigate('/');
+    } catch (error) {
+        console.error('There was an error registering!', error);
+    }
+};
+
+
+
+
   return (
    <>
    
@@ -28,25 +61,30 @@ function Signup() {
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="user-form">
-                            <form action="#">
+                            <form onSubmit={handleSubmit}>
 
                             <div class="form_group">
                                     <label>Full Name *</label>
-                                    <input type="text" class="form_control" />
+                                    <input type="text" value={name} onChange={(e) => SetName(e.target.value)}  class="form_control" />
                                 </div>
 
                                 <div class="form_group">
                                     <label>Username *</label>
-                                    <input type="text" class="form_control" />
+                                    <input type="text" value={user_name} onChange={(e) => SetUserName(e.target.value)} class="form_control" />
                                 </div>
                                 <div class="form_group">
                                     <label>Email address *</label>
-                                    <input type="email" class="form_control" />
+                                    <input type="email" value={email} onChange={(e) => SetEmail(e.target.value)} class="form_control" />
                                 </div>
                                 <div class="form_group">
                                     <label>Password *</label>
-                                    <input type="password" class="form_control" />
+                                    <input type="password" value={password} onChange={(e) => SetPassword(e.target.value)} class="form_control" />
                                 </div>
+                                <div class="form_group">
+                                    <label>Profile Image *</label>
+                                    <input type="file" value={profile_image} onChange={(e) => SetProfileImage(e.target.value)} class="form_control" />
+                                </div>
+
                                 {/* <div class="form_checkbox d-flex align-items-center">
                                     <input type="checkbox" name="checkbox1" id="checkbox1" />
                                     <label for="checkbox1"><span>I agree with Prohire's <a href="terms-conditions.html">Terms & Conditions</a></span></label>

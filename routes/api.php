@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('register',[UserController::class,'register'])->name('register');
+Route::post('/register',[UserController::class,'register'])->name('register');
 
 
 
