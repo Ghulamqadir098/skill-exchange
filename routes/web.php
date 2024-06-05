@@ -6,7 +6,7 @@ use App\Http\Controllers\SkillController;
 
 Route::get('/{any}', function () {
     return view('welcome');
-})->where('any', '^(?!admin).*$');
+})->where('any', '^(?!admin|api).*$');
 
 
 

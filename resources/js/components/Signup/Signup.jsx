@@ -29,9 +29,15 @@ function Signup() {
                     <div class="col-lg-8">
                         <div class="user-form">
                             <form action="#">
+
+                            <div class="form_group">
+                                    <label>Full Name *</label>
+                                    <input type="text" class="form_control" />
+                                </div>
+
                                 <div class="form_group">
                                     <label>Username *</label>
-                                    <input type="email" class="form_control" />
+                                    <input type="text" class="form_control" />
                                 </div>
                                 <div class="form_group">
                                     <label>Email address *</label>
@@ -41,10 +47,10 @@ function Signup() {
                                     <label>Password *</label>
                                     <input type="password" class="form_control" />
                                 </div>
-                                <div class="form_checkbox d-flex align-items-center">
+                                {/* <div class="form_checkbox d-flex align-items-center">
                                     <input type="checkbox" name="checkbox1" id="checkbox1" />
                                     <label for="checkbox1"><span>I agree with Prohire's <a href="terms-conditions.html">Terms & Conditions</a></span></label>
-                                </div>
+                                </div> */}
                                 <div class="form_group">
                                     <button type="submit" class="main-btn">Create Account</button>
                                 </div>
