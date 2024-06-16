@@ -1,7 +1,17 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink,useNavigate } from "react-router-dom";
 import React from "react";
 import image1 from "../../assets/images/logo-1.png";
+import { useContext } from 'react';
+import { AuthContext } from "../Auth/AuthContext";
+
+
 function Header() {
+    const navigate = useNavigate();
+
+    const { isAuthenticated, logout, loading } = useContext(AuthContext);
+
+  if (loading) return <div>Loading...</div>;
+
     return (
         <>
             <header className="header-area header-two">
@@ -60,19 +70,16 @@ function Header() {
                                                 <a href="#home">Home</a>
                                                 <ul className="sub-menu">
                                                     <li>
-                                                        <a href="index.html">
-                                                            Home 1
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index-2.html">
-                                                            Home 2
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index-3.html">
-                                                            Home 3
-                                                        </a>
+
+
+                                                        <NavLink
+                                                        to="/"
+                                                    // className={({isActive})=>`${isActive?"iamactive":"text-success"}`}    
+                                                        >
+                                                        Home 1
+                                                        </NavLink>
+                                                        
+                                                        
                                                     </li>
                                                 </ul>
                                             </li>
@@ -129,15 +136,51 @@ function Header() {
                                                             Faq
                                                         </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="login.html">
-                                                            Login
-                                                        </a>
+
+
+                                                    {isAuthenticated ? (
+          <>
+{console.log(isAuthenticated)}
+                                                                <li>
+                                                        <NavLink
+                                                        onClick={logout}
+                                                        >
+                                                        Logout
+                                                        </NavLink>
                                                     </li>
+            <li><a href="/dashboard">Dashboard</a></li>
+          </>
+        ) : (
+          
+            <li>
+{/* {alert(isAuthenticated)} */}
+
+            <NavLink to={"/login"}
+            
+            >
+            Login
+            </NavLink>
+        </li>
+
+        )}
+
+
+                                                    {/* <li>
+                                                        <NavLink to={"/login"}
+                                                        
+                                                        >
+                                                        Login
+                                                        </NavLink>
+                                                    </li> */}
                                                     <li>
-                                                        <a href="signup.html">
-                                                            Sign Up
-                                                        </a>
+                                                        
+                                                    <NavLink to="/signup" 
+                                                    // className={({isActive})=>`${isActive?"iamactive":"text-success"}`}
+                                                    
+                                                    >
+                                                    Sign Up
+                                                    </NavLink>
+                                                        
                                                     </li>
                                                     <li>
                                                         <a href="404.html">

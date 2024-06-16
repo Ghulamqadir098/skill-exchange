@@ -6,6 +6,7 @@ use App\Models\User;
 // use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,7 +35,41 @@ $user->profile_image= $request->profile_image;
 $user->save();
 
 $token = $user->createToken('authToken')->plainTextToken;
-return response()->json(['token' => $token, 'user' => $user,'hello'=>'tello'], 201);
+return response()->json(['token' => $token, 'user' => $user], 201);
 
 }
+
+
+public function auth_check(Request $request){
+
+    return response()->json(['authenticated' => $request->user('sanctum')]);
+
+// dd($request->user('sanctum'));
+}
+public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json(['access_token' => $token, 'token_type' => 'Bearer'], 200);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user('sanctum')->currentAccessToken()->delete();
+// dd("hello world");
+        return response()->json(['message' => 'Logged out'], 200);
+    }
+
+
 }

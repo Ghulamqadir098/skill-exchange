@@ -1,20 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import App from './App.jsx'
-// import './index.css'
+import { AuthContext, AuthProvider } from './Auth/AuthContext.jsx'
 import { Route, RouterProvider, createBrowserRouter,createRoutesFromElements } from 'react-router-dom'
 import Layout from './Layout.jsx'
 import Home from './Home/Home.jsx'
 import Signup from './Signup/Signup.jsx'
-
+import Login from './Login/Login.jsx'
 
 const router= createBrowserRouter(createRoutesFromElements(
+
 
     <Route path='/' element={<Layout/>}>
     <Route path='' element={<Home />} />
     <Route path='signup' element={<Signup />} />
+    <Route path='login' element={<Login />} />
     </Route>
-    
+
+  
     ));
 
 
@@ -39,6 +41,8 @@ const router= createBrowserRouter(createRoutesFromElements(
 
 ReactDOM.createRoot(document.getElementById('example')).render(
     <React.StrictMode>
+  <AuthProvider>
       <RouterProvider router={router} />
+      </AuthProvider>
     </React.StrictMode>,
   )
