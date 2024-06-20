@@ -46,11 +46,11 @@
                 </div>
                 <div class="modal-body">
                     <span class="mx-2">
-                        <i class="fas fa-code" id="firstitem" onclick="handelClick2(this.id, this.style.color)"
+                        <i class="fas website fa-code" id="firstitem" onclick="handelClick2(this.id, this.style.color)"
                             style="color: #fb79c5;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-brands fa-laravel" id="seconditem" onclick="handelClick2(this.id, this.style.color)"
+                        <i class="fa-brands programing fa-laravel" id="seconditem" onclick="handelClick2(this.id, this.style.color)"
                             style="color: #ff0000;"></i>
                     </span>
                     <span class="mx-2">
@@ -58,7 +58,7 @@
                             style="color: #63E6BE;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-brands fa-bitcoin" id="fourthitem" onclick="handelClick2(this.id, this.style.color)"
+                        <i class="fa-brands trading fa-bitcoin" id="fourthitem" onclick="handelClick2(this.id, this.style.color)"
                             style="color: #FFD43B;"></i>
                     </span>
                     <span class="mx-2">
@@ -70,7 +70,7 @@
                             style="color: #e16bd1;"></i>
                     </span>
                     <span class="mx-2">
-                        <i class="fa-solid fa-bowl-food" id="seventhitem" onclick="handelClick2(this.id, this.style.color)"
+                        <i class="fa-solid cooking cook fa-bowl-food" id="seventhitem" onclick="handelClick2(this.id, this.style.color)"
                             style="color: #fb98b6;"></i>
                     </span>
                     <span class="mx-2">
@@ -80,6 +80,14 @@
                     <span class="mx-2">
                         <i class="fa-solid fa-person-swimming" id="ninthitem"
                             onclick="handelClick2(this.id, this.style.color)" style="color: #74C0FC;"></i>
+                    </span>
+                    <span class="mx-2">
+                        <i class="fab front end fa-css3-alt" id="tenthitem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #1f9380;"></i>
+                    </span>
+                    <span class="mx-2">
+                        <i class="fas graphic fa-photo-video" id="elevenitem" onclick="handelClick2(this.id, this.style.color)"
+                            style="color: #d49310;"></i>
                     </span>
                 </div>
                 <div class="modal-footer">

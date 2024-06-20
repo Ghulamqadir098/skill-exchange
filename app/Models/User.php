@@ -17,6 +17,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Skill::class);
     }
 
+
+    public function exchanges()
+    {
+        return $this->hasMany(Exchange::class);
+    }
+
+    
     /**
      * The attributes that are mass assignable.
      *

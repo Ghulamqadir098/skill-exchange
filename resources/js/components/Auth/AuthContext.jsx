@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       axios.get('/api/auth-check')
         .then(response => {
           setIsAuthenticated(response.data.authenticated);
-           alert(response.data.authenticated);
+           console.log(response.data.authenticated);
           setLoading(false);
         })
         .catch(error => {

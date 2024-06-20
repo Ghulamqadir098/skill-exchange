@@ -57,5 +57,18 @@
     <script src="{{asset('./assets/js/slick.min.js')}}"></script>
     <!--====== Main js ======-->
     <script src="{{asset('./assets/js/main.js')}}"></script>
+
+
+
+
+
+
+
+{{-- CK EDitor scripts start Below --}}
+
+
+
+
+
     </body>
 </html>

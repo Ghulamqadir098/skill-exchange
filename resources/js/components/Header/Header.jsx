@@ -148,19 +148,42 @@ function Header() {
                                                         Logout
                                                         </NavLink>
                                                     </li>
-            <li><a href="/dashboard">Dashboard</a></li>
+            <li>
+                <NavLink
+                to={'/create_exchange'}
+                >
+                Make Exchange
+                </NavLink>
+
+                </li>
           </>
         ) : (
+<>
           
             <li>
 {/* {alert(isAuthenticated)} */}
-
             <NavLink to={"/login"}
             
             >
             Login
             </NavLink>
         </li>
+
+
+        
+
+
+                                                    <li>
+                                                        
+                                                    <NavLink to="/signup" 
+                                                    // className={({isActive})=>`${isActive?"iamactive":"text-success"}`}
+                                                    
+                                                    >
+                                                    Sign Up
+                                                    </NavLink>
+                                                        
+                                                    </li>
+        </>
 
         )}
 
@@ -172,16 +195,7 @@ function Header() {
                                                         Login
                                                         </NavLink>
                                                     </li> */}
-                                                    <li>
-                                                        
-                                                    <NavLink to="/signup" 
-                                                    // className={({isActive})=>`${isActive?"iamactive":"text-success"}`}
-                                                    
-                                                    >
-                                                    Sign Up
-                                                    </NavLink>
-                                                        
-                                                    </li>
+
                                                     <li>
                                                         <a href="404.html">
                                                             Error 404

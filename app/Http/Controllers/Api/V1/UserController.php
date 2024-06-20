@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\User;
 // use Dotenv\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -41,10 +42,9 @@ return response()->json(['token' => $token, 'user' => $user], 201);
 
 
 public function auth_check(Request $request){
-
+    // Log::info($request->user('sanctum'));
     return response()->json(['authenticated' => $request->user('sanctum')]);
 
-// dd($request->user('sanctum'));
 }
 public function login(Request $request)
     {

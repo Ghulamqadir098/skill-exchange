@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -47,4 +48,22 @@ public function delete_skills($id){
    return back()->with('success', 'You have successfully deleted a skill');
 }
 
+
+
+
+// Front end requests 
+
+public function get_skills(Request $request){
+
+    // $skills= Skill::all();
+// return response()->json(['authenticated' => $request->user('sanctum')]);
+$user=$request->user('sanctum');
+if (!$user) {
+    return response()->json(['message' => 'User not authenticated'], 401);
+}
+$skills=$user->skills;
+$all_skills=Skill::all();
+return response()->json(['skills' => $skills, 'all_skills' => $all_skills]);
+
+}
 }

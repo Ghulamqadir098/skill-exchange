@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Skill extends Model
 {
-    use HasFactory;
 
     public function users()
     {
@@ -15,4 +14,17 @@ class Skill extends Model
     }
 
 
+    public function offeredExchanges()
+    {
+        return $this->hasMany(Exchange::class, 'offer_skill_id');
+    }
+
+  public function requestedExchanges()
+    {
+        return $this->hasMany(Exchange::class, 'request_skill_id');
+    }
+
+
+
+    use HasFactory;
 }

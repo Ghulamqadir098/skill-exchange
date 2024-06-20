@@ -6,6 +6,7 @@ import Layout from './Layout.jsx'
 import Home from './Home/Home.jsx'
 import Signup from './Signup/Signup.jsx'
 import Login from './Login/Login.jsx'
+import Create_Exchange from './Exchange/Create_Exchange.jsx'
 
 const router= createBrowserRouter(createRoutesFromElements(
 
@@ -14,8 +15,8 @@ const router= createBrowserRouter(createRoutesFromElements(
     <Route path='' element={<Home />} />
     <Route path='signup' element={<Signup />} />
     <Route path='login' element={<Login />} />
+    <Route path='create_exchange' element={<Create_Exchange/>}/>
     </Route>
-
   
     ));
 
