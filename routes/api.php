@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\ExchangeController;
 use App\Http\Controllers\SkillController;
 
 // USer Routes
@@ -14,6 +15,12 @@ Route::get('/auth-check',[UserController::class,'auth_check'])->name('auth_check
 
 // Skill Routes
 Route::get('/get_skills',[SkillController::class,'get_skills'])->middleware('auth:sanctum');
+
+
+
+// Exchange Routes
+Route::post('create-exchange',[ExchangeController::class,'create_exchange'])->middleware('auth:sanctum');
+
 
 Route::get('/user', function (Request $request) {
 

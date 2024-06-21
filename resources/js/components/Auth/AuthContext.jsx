@@ -9,7 +9,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const[authenticated_user, setAuthenticated_user] = useState("")
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
       axios.get('/api/auth-check')
         .then(response => {
           setIsAuthenticated(response.data.authenticated);
+          setAuthenticated_user(response.data.authenticated);
            console.log(response.data.authenticated);
           setLoading(false);
         })
@@ -65,7 +66,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, loading }}>
+    <AuthContext.Provider value={{ authenticated_user,isAuthenticated, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
