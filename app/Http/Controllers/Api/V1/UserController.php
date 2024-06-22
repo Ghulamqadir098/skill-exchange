@@ -20,7 +20,7 @@ $validator= Validator::make($request->all(),[
 'name'=>'required|string|max:255',
 'email'=>'required|string|email|max:255|unique:users',
 'password' => 'required|string|min:8',
-'profile_image'=>'required|string|max:500'
+'profile_image'=>'required|max:500'
 ]);
 if ($validator->fails()){
     return response()->json($validator->errors(), 422);
@@ -32,7 +32,15 @@ $user->user_name= $request->user_name;
 $user->name= $request->name;
 $user->email= $request->email;
 $user->password=  Hash::make($request->password);
-$user->profile_image= $request->profile_image;
+
+
+$imageName = time().'.'.$request->profile_image->extension();
+
+$request->profile_image->move(storage_path('app/public/images'), $imageName);
+
+// $user->profile_image= $request->profile_image;
+$user->profile_image= 'images/' . $imageName;
+
 $user->save();
 
 $token = $user->createToken('authToken')->plainTextToken;

@@ -4276,3 +4276,12 @@ Animations css
         transform: translateX(0);
     }
 }
+
+
+/* Custom CSS */
+
+
+.profile{
+border-radius: 25px !important;
+
+}

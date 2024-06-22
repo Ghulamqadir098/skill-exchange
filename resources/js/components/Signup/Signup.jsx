@@ -6,28 +6,48 @@ import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Link, NavLink } from "react-router-dom";
+
 function Signup() {
-    const [user_name, SetUserName] = useState("");
-    const [name, SetName] = useState("");
-    const [email, SetEmail] = useState("");
-    const [password, SetPassword] = useState("");
-    const [profile_image, SetProfileImage] = useState("");
+  
+    const [formData, setFormData] = useState({
+        name: '',
+        user_name:'',
+        email: '',
+        password:'',
+        // other user data fields
+    });
+    const [file, setFile] = useState(null);
+
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+    
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+    };
+
     const navigate = useNavigate();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const data = new FormData();
+        for (const key in formData) {
+            data.append(key, formData[key]);
+        }
+        data.append('profile_image', file);
+
         try {
-            const response = await axios.post(
-                "http://localhost:8000/api/register",
-                {
-                    name,
-                    user_name,
-                    email,
-                    password,
-                    profile_image,
-                }
-            );
-            // alert('Registration successful. Token: ' + response.data.token);
+            const response = await axios.post('http://localhost:8000/api/register', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(response.data);
             Swal.fire({
                 position: "center",
                 icon: "success",
@@ -35,10 +55,9 @@ function Signup() {
                 showConfirmButton: false,
                 timer: 2000,
             });
-
-            navigate("/");
+navigate('/');
         } catch (error) {
-            console.error("There was an error registering!", error);
+            console.error('Error uploading data:', error);
         }
     };
 
@@ -82,10 +101,9 @@ function Signup() {
                                         <label>Full Name *</label>
                                         <input
                                             type="text"
-                                            value={name}
-                                            onChange={(e) =>
-                                                SetName(e.target.value)
-                                            }
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
                                             class="form_control"
                                         />
                                     </div>
@@ -94,10 +112,9 @@ function Signup() {
                                         <label>Username *</label>
                                         <input
                                             type="text"
-                                            value={user_name}
-                                            onChange={(e) =>
-                                                SetUserName(e.target.value)
-                                            }
+                                            name="user_name"
+                                            value={formData.user_name}
+                                            onChange={handleInputChange}
                                             class="form_control"
                                         />
                                     </div>
@@ -105,10 +122,9 @@ function Signup() {
                                         <label>Email address *</label>
                                         <input
                                             type="email"
-                                            value={email}
-                                            onChange={(e) =>
-                                                SetEmail(e.target.value)
-                                            }
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleInputChange}
                                             class="form_control"
                                         />
                                     </div>
@@ -116,10 +132,9 @@ function Signup() {
                                         <label>Password *</label>
                                         <input
                                             type="password"
-                                            value={password}
-                                            onChange={(e) =>
-                                                SetPassword(e.target.value)
-                                            }
+                                            name="password"
+                                            value={formData.password}
+                                            onChange={handleInputChange}
                                             class="form_control"
                                         />
                                     </div>
@@ -127,18 +142,13 @@ function Signup() {
                                         <label>Profile Image *</label>
                                         <input
                                             type="file"
-                                            value={profile_image}
-                                            onChange={(e) =>
-                                                SetProfileImage(e.target.value)
-                                            }
+                                            name="profile_image"
+                                            onChange={handleFileChange}
                                             class="form_control"
                                         />
                                     </div>
 
-                                    {/* <div class="form_checkbox d-flex align-items-center">
-                                    <input type="checkbox" name="checkbox1" id="checkbox1" />
-                                    <label for="checkbox1"><span>I agree with Prohire's <a href="terms-conditions.html">Terms & Conditions</a></span></label>
-                                </div> */}
+
                                     <div class="form_group">
                                         <button type="submit" class="main-btn">
                                             Create Account

@@ -156,6 +156,17 @@ function Header() {
                 </NavLink>
 
                 </li>
+
+
+                <li>
+                <NavLink
+                to={'user_profile'} 
+                 >
+                Profile
+                </NavLink>
+
+                </li>
+
           </>
         ) : (
 <>
