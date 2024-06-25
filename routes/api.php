@@ -12,6 +12,9 @@ Route::post('/register',[UserController::class,'register'])->name('register');
 Route::post('/login',[UserController::class,'login'])->name('login');
 Route::post('/logout', [UserController::class,'logout'])->name('logout');
 Route::get('/auth-check',[UserController::class,'auth_check'])->name('auth_check');
+Route::get('/user_with_exchange',[UserController::class,'user_with_exchange'])->middleware('auth:sanctum');
+
+
 
 // Skill Routes
 Route::get('/get_skills',[SkillController::class,'get_skills'])->middleware('auth:sanctum');

@@ -80,4 +80,34 @@ public function login(Request $request)
     }
 
 
+public function user_with_exchange(Request $request){
+
+  // Retrieve authenticated user
+  $authenticuser = $request->user('sanctum');
+    
+  // Retrieve exchanges associated with the authenticated user
+  $exchanges = $authenticuser->exchanges()->get();
+
+  // Extract request_skill_id values from exchanges
+  $request_skill_ids = $exchanges->pluck('request_skill_id')->toArray();
+
+  // Fetch users with one random exchange where offer_skill_id matches any value in request_skill_ids
+  $users = User::whereHas('exchanges', function($query) use ($request_skill_ids) {
+      $query->whereIn('offer_skill_id', $request_skill_ids);
+  })->get();
+
+  // Attach a single random exchange that matches the criteria to each user
+  foreach ($users as $user) {
+      $user->exchange = $user->exchanges()
+                             ->whereIn('offer_skill_id', $request_skill_ids)
+                             ->inRandomOrder()
+                             ->first()->toArray();
+  }
+  // Remove the exchanges relationship to avoid returning all exchanges
+//   $users->each->setRelation('exchanges', null);
+
+  // Return the filtered users with one exchange each as a response
+  return response()->json(['users' => $users], 200);
+
+}
 }

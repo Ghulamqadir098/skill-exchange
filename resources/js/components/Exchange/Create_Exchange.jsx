@@ -13,16 +13,92 @@ import { useNavigate } from "react-router-dom";
 
 function Create_Exchange() {
     const editor = useRef(null);
-    const [content, setContent] = useState("");
-    const [title, setTitle] = useState("");
+    // const [content, setContent] = useState("");
+    // const [title, setTitle] = useState("");
     const [myskills, setMySkills] = useState("");
     const [all_skills, setAllSkills] = useState("");
 
-    const [myskillspost, setMySkillsPost] = useState("");
-    const [all_skillspost, setAllSkillsPost] = useState("");
+    // const [myskillspost, setMySkillsPost] = useState("");
+    // const [all_skillspost, setAllSkillsPost] = useState("");
     const { authenticated_user} = useContext(AuthContext);
-   const user_id = authenticated_user.id;
-   const navigate =useNavigate();
+    const user_id = authenticated_user.id;
+   
+   
+
+
+
+
+
+
+
+
+    const [formData, setFormData] = useState({
+
+        title: '',
+        myskillspost: '',
+        all_skillspost:'',
+        // other user data fields
+    });
+    const [file, setFile] = useState(null);
+    const[content,setContent]=useState('');
+
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+    
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+    };
+
+
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const data = new FormData();
+        for (const key in formData) {
+            data.append(key, formData[key]);
+        }
+        data.append('featured_image', file);
+        data.append('user_id',user_id);
+        data.append('content',content) ;
+        try {
+            const response = await axios.post('http://localhost:8000/api/create-exchange', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(response.data);
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Exchange Created successfuly",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+navigate('/');
+        } catch (error) {
+
+            Swal.fire({
+                position: "center",
+                icon: "danger",
+                title: "There was an error in Creating Exchange!"+error,
+                showConfirmButton: false,
+                timer: 2000,
+            });
+
+            console.error('Error uploading data:', error);
+        }
+    };
+
+
+
+   
+    const navigate =useNavigate();
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
@@ -53,39 +129,39 @@ function Create_Exchange() {
         }
     }, []);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(
-                "http://localhost:8000/api/create-exchange",
-                {
-                    user_id,
-                    title,
-                    content,
-                    myskillspost,
-                    all_skillspost,
-                }
-            );
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Exchange was successfully Created",
-                showConfirmButton: false,
-                timer: 2000,
-            });
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const response = await axios.post(
+    //             "http://localhost:8000/api/create-exchange",
+    //             {
+    //                 user_id,
+    //                 title,
+    //                 content,
+    //                 myskillspost,
+    //                 all_skillspost,
+    //             }
+    //         );
+    //         Swal.fire({
+    //             position: "center",
+    //             icon: "success",
+    //             title: "Exchange was successfully Created",
+    //             showConfirmButton: false,
+    //             timer: 2000,
+    //         });
 
-            navigate("/");
-        } catch (error) {
-            console.error("There was an error in Creating Exchange!", error);
-            Swal.fire({
-                position: "center",
-                icon: "danger",
-                title: "There was an error in Login!" + error,
-                showConfirmButton: false,
-                timer: 2000,
-            });
-        }
-    };
+    //         navigate("/");
+    //     } catch (error) {
+    //         console.error("There was an error in Creating Exchange!", error);
+    //         Swal.fire({
+    //             position: "center",
+    //             icon: "danger",
+    //             title: "There was an error in Login!" + error,
+    //             showConfirmButton: false,
+    //             timer: 2000,
+    //         });
+    //     }
+    // };
 
     return (
         <>
@@ -125,10 +201,21 @@ function Create_Exchange() {
                                             type="text"
                                             placeholder="I will do something for you in exchange for something I need help with"
                                             class="form_control"
-                                            value={title}
-                                            onChange={(e) =>
-                                                setTitle(e.target.value)
-                                            }
+                                            name="title"
+                                            value={formData.title}
+                                            onChange={handleInputChange}
+                                        />
+                                        
+                                    </div>
+
+
+                                    <div class="form_group">
+                                        <label>Featured Image *</label>
+                                        <input
+                                            type="file"
+                                            class="form_control"
+                                            name="featured_image"
+                                            onChange={handleFileChange}
                                         />
                                         
                                     </div>
@@ -136,11 +223,10 @@ function Create_Exchange() {
                                     <div class="form_group">
                                         <label>Offering Skill *</label>
                                         <select
-                                            name="skill"
+                                            name="myskillspost"
                                             id="skill"
-                                            onChange={(e) =>
-                                                setMySkillsPost(e.target.value)
-                                            }
+                                            value={formData.myskillspost}
+                                            onChange={handleInputChange}
                                         >
 
                                             {Array.isArray(myskills) &&
@@ -170,11 +256,10 @@ function Create_Exchange() {
                                     <div class="form_group">
                                         <label>Required Skill *</label>
                                         <select
-                                            name="required_skill"
+                                            name="all_skillspost"
                                             id="required_skill"
-                                            onChange={(e) =>
-                                                setAllSkillsPost(e.target.value)
-                                            }
+                                            value={formData.all_skillspost}
+                                            onChange={handleInputChange}
                                         >
                                             {Array.isArray(all_skills) &&
                                             all_skills.length > 0 ? (
@@ -207,11 +292,13 @@ function Create_Exchange() {
                                         </label>
                                         {/* <textarea name="details"  class="form_control" id="editor"></textarea> */}
                                         <JoditEditor
+                                        name={"content"}
                                             useRef={editor}
                                             value={content}
                                             onChange={(newContent) =>
                                                 setContent(newContent)
                                             }
+                                        
                                         />
                                     </div>
                                     {/* <div class="form_checkbox d-flex align-items-center">

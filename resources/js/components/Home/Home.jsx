@@ -1,6 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ImagesData from '../../assets/images/images.json'
+import { useEffect } from 'react';
+import axios from 'axios';
 function Home() {
+
+const[users,setUsers]=useState([]);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            // alert(token);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+            axios
+                .get("/api/user_with_exchange")
+                .then((response) => {
+                    console.log(response.data.users);
+                    setUsers(response.data.users);
+                    
+                })
+                .catch((error) => {
+                    console.error("Error getting Users", error);
+                });
+        }
+
+
+    }, []);
+
   return (
     <>
     {/* <!--====== Start Hero ======--> */}
@@ -180,302 +205,56 @@ function Home() {
                 <div className="tab-content">
                     <div id="service1" className="tab-pane fade show active">
                         <div className="row">
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                <div className="gig-item mb-30">
-                                    <div className="gig-img">
-                                        <a href="service-details.html"><img src={`${ImagesData.image4}`} alt="Image"/></a>
-                                    </div>
-                                    <div className="gig-info">
-                                        <div className="gig-top">
-                                            <div className="user-title-thumb">
-                                                <div className="user-thumb">
-                                                    <img className="rounded-circle" src={`${ImagesData.image5}`} alt="Image"/>
-                                                </div>
-                                                <div className="user-info">
-                                                    <h5 className="name">Nancy Reyes</h5>
-                                                    <p className="status">New seller</p>
-                                                </div>
-                                            </div>
-                                            <div className="heart">
-                                                <a href="404.html" className="icon"><i className="fas fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div className="service-content">
-                                            <h4 className="title"><a href="service-details.html">I will do wix website design, wix website redesign or redesign wix website</a></h4>
-                                            <div className="rating-info">
-                                                <div className="rate">
-                                                    <div className="rating">
-                                                    </div>
-                                                </div>
-                                                <span>(4.5)</span>
-                                            </div>
-                                        </div>
-                                        <div className="service-bottom">
-                                            <span className="text">Starting at</span>
-                                            <span className="nubmer">$10.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                <div className="gig-item mb-30">
-                                    <div className="gig-img">
-                                        <a href="service-details.html"><img src={`${ImagesData.image6}`} alt="Image"/></a>
-                                    </div>
-                                    <div className="gig-info">
-                                        <div className="gig-top">
-                                            <div className="user-title-thumb">
-                                                <div className="user-thumb">
-                                                    <img className="rounded-circle" src={`${ImagesData.image7}`} alt="Image"/>
-                                                </div>
-                                                <div className="user-info">
-                                                    <h5 className="name">Maria Mae</h5>
-                                                    <p className="status">New seller</p>
-                                                </div>
-                                            </div>
-                                            <div className="heart">
-                                                <a href="404.html" className="icon"><i className="fas fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div className="service-content">
-                                            <h4 className="title"><a href="service-details.html">I will do website and landing page UI UX design in figma, xd format</a></h4>
-                                            <div className="rating-info">
-                                                <div className="rate">
-                                                    <div className="rating">
-                                                    </div>
-                                                </div>
-                                                <span>(4.8)</span>
-                                            </div>
-                                        </div>
-                                        <div className="service-bottom">
-                                            <span className="text">Starting at</span>
-                                            <span className="nubmer">$13.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                <div className="gig-item mb-30">
-                                    <div className="gig-img">
-                                        <a href="service-details.html"><img src={`${ImagesData.image8}`} alt="Image"/></a>
-                                    </div>
-                                    <div className="gig-info">
-                                        <div className="gig-top">
-                                            <div className="user-title-thumb">
-                                                <div className="user-thumb">
-                                                    <img className="rounded-circle" src={`${ImagesData.image9}`} alt="Image"/>
-                                                </div>
-                                                <div className="user-info">
-                                                    <h5 className="name">Alex Embroce</h5>
-                                                    <p className="status">New seller</p>
-                                                </div>
-                                            </div>
-                                            <div className="heart">
-                                                <a href="404.html" className="icon"><i className="fas fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div className="service-content">
-                                            <h4 className="title"><a href="service-details.html">I will do responsive business wordpress website design or build ecommerce</a></h4>
-                                            <div className="rating-info">
-                                                <div className="rate">
-                                                    <div className="rating">
-                                                    </div>
-                                                </div>
-                                                <span>(4.6)</span>
-                                            </div>
-                                        </div>
-                                        <div className="service-bottom">
-                                            <span className="text">Starting at</span>
-                                            <span className="nubmer">$11.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                <div className="gig-item mb-30">
-                                    <div className="gig-img">
-                                        <a href="service-details.html"><img src={`${ImagesData.image10}`} alt="Image"/></a>
-                                    </div>
-                                    <div className="gig-info">
-                                        <div className="gig-top">
-                                            <div className="user-title-thumb">
-                                                <div className="user-thumb">
-                                                    <img className="rounded-circle" src={`${ImagesData.image11}`} alt="Image"/>
-                                                </div>
-                                                <div className="user-info">
-                                                    <h5 className="name">Johnny Mars</h5>
-                                                    <p className="status">New seller</p>
-                                                </div>
-                                            </div>
-                                            <div className="heart">
-                                                <a href="404.html" className="icon"><i className="fas fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div className="service-content">
-                                            <h4 className="title"><a href="service-details.html">I will design a professional responsive website for your business</a></h4>
-                                            <div className="rating-info">
-                                                <div className="rate">
-                                                    <div className="rating">
-                                                    </div>
-                                                </div>
-                                                <span>(4.5)</span>
-                                            </div>
-                                        </div>
-                                        <div className="service-bottom">
-                                            <span className="text">Starting at</span>
-                                            <span className="nubmer">$09.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                <div className="gig-item mb-30">
-                                    <div className="gig-img">
-                                        <a href="service-details.html"><img src={`${ImagesData.image12}`} alt="Image"/></a>
-                                    </div>
-                                    <div className="gig-info">
-                                        <div className="gig-top">
-                                            <div className="user-title-thumb">
-                                                <div className="user-thumb">
-                                                    <img className="rounded-circle" src={`${ImagesData.image13}`} alt="Image"/>
-                                                </div>
-                                                <div className="user-info">
-                                                    <h5 className="name">Designer Hub</h5>
-                                                    <p className="status">New seller</p>
-                                                </div>
-                                            </div>
-                                            <div className="heart">
-                                                <a href="404.html" className="icon"><i className="fas fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div className="service-content">
-                                            <h4 className="title"><a href="service-details.html">I will do website ui ux, web app ux ui, ui ux design, creative ui design</a></h4>
-                                            <div className="rating-info">
-                                                <div className="rate">
-                                                    <div className="rating">
-                                                    </div>
-                                                </div>
-                                                <span>(4.7)</span>
-                                            </div>
-                                        </div>
-                                        <div className="service-bottom">
-                                            <span className="text">Starting at</span>
-                                            <span className="nubmer">$11.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                <div className="gig-item mb-30">
-                                    <div className="gig-img">
-                                        <a href="service-details.html"><img src={`${ImagesData.image14}`} alt="Image"/></a>
-                                    </div>
-                                    <div className="gig-info">
-                                        <div className="gig-top">
-                                            <div className="user-title-thumb">
-                                                <div className="user-thumb">
-                                                    <img className="rounded-circle" src={`${ImagesData.image15}`} alt="Image"/>
-                                                </div>
-                                                <div className="user-info">
-                                                    <h5 className="name">Tommy Yong</h5>
-                                                    <p className="status">New seller</p>
-                                                </div>
-                                            </div>
-                                            <div className="heart">
-                                                <a href="404.html" className="icon"><i className="fas fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div className="service-content">
-                                            <h4 className="title"><a href="service-details.html">I will install elementor pro, astra pro, divi theme, wp rocket, crocoblock plugin</a></h4>
-                                            <div className="rating-info">
-                                                <div className="rate">
-                                                    <div className="rating">
-                                                    </div>
-                                                </div>
-                                                <span>(4.2)</span>
-                                            </div>
-                                        </div>
-                                        <div className="service-bottom">
-                                            <span className="text">Starting at</span>
-                                            <span className="nubmer">$14.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                <div className="gig-item mb-30">
-                                    <div className="gig-img">
-                                        <a href="service-details.html"><img src={`${ImagesData.image16}`} alt="Image"/></a>
-                                    </div>
-                                    <div className="gig-info">
-                                        <div className="gig-top">
-                                            <div className="user-title-thumb">
-                                                <div className="user-thumb">
-                                                    <img className="rounded-circle" src={`${ImagesData.image17}`} alt="Image"/>
-                                                </div>
-                                                <div className="user-info">
-                                                    <h5 className="name">Molina De</h5>
-                                                    <p className="status">New seller</p>
-                                                </div>
-                                            </div>
-                                            <div className="heart">
-                                                <a href="404.html" className="icon"><i className="fas fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div className="service-content">
-                                            <h4 className="title"><a href="service-details.html">I will build and design a wordpress website using divi, elementor</a></h4>
-                                            <div className="rating-info">
-                                                <div className="rate">
-                                                    <div className="rating">
-                                                    </div>
-                                                </div>
-                                                <span>(4.4)</span>
-                                            </div>
-                                        </div>
-                                        <div className="service-bottom">
-                                            <span className="text">Starting at</span>
-                                            <span className="nubmer">$19.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                                <div className="gig-item mb-30">
-                                    <div className="gig-img">
-                                        <a href="service-details.html"><img src={`${ImagesData.image18}`} alt="Image"/></a>
-                                    </div>
-                                    <div className="gig-info">
-                                        <div className="gig-top">
-                                            <div className="user-title-thumb">
-                                                <div className="user-thumb">
-                                                    <img className="rounded-circle" src={`${ImagesData.image19}`} alt="Image"/>
-                                                </div>
-                                                <div className="user-info">
-                                                    <h5 className="name">Zain Saeed</h5>
-                                                    <p className="status">New seller</p>
-                                                </div>
-                                            </div>
-                                            <div className="heart">
-                                                <a href="404.html" className="icon"><i className="fas fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                        <div className="service-content">
-                                            <h4 className="title"><a href="service-details.html">I will design or redesign wix website and wix ecommerce website</a></h4>
-                                            <div className="rating-info">
-                                                <div className="rate">
-                                                    <div className="rating">
-                                                    </div>
-                                                </div>
-                                                <span>(4.1)</span>
-                                            </div>
-                                        </div>
-                                        <div className="service-bottom">
-                                            <span className="text">Starting at</span>
-                                            <span className="nubmer">$10.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                         {users.map((user) =>(
+
+
+<div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" key={user.id}>
+<div className="gig-item mb-30">
+  
+
+    <div className="gig-img">
+<a href="service-details.html"><img
+height={10+'%'} width={100+'%'}
+src={`storage/${user.exchange.featured_image}`} className='object-fit-contain' style={{height:25+'vh',width:100+'vw'}} alt="Image"/></a>
+</div>
+    <div className="gig-info">
+        <div className="gig-top">
+            <div className="user-title-thumb">
+                
+                <div className="user-thumb">
+                    <img className="rounded-circle" src={`storage/${user.profile_image}`} alt="Image"/>
+                </div>
+                <div className="user-info">
+                    <h5 className="name">{user.name}</h5>
+                    <p className="status">New seller</p>
+                </div>
+            </div>
+            <div className="heart">
+                <a href="404.html" className="icon"><i className="fas fa-heart"></i></a>
+            </div>
+        </div>
+        <div className="service-content">
+            <h4 className="title"><a href="#">{user.exchange.title}</a></h4>
+            <div className="rating-info">
+                <div className="rate">
+                    <div className="rating">
+                    
+
+                    </div>
+                </div>
+                <span>(4.5)</span>
+            </div>
+        </div>
+        <div className="service-bottom">
+            <span className="text">Starting at</span>
+            <span className="nubmer">$10.00</span>
+        </div>
+    </div>
+</div>
+</div>
+
+                         ))}
+
                         </div>
                     </div>
                     <div id="service2" className="tab-pane fade">

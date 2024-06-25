@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 // import  useHistory  from 'react-router-dom';
-import { createBrowserHistory } from "@remix-run/router";
 import ImagesData1 from "../../assets/images/signup_images.json";
 import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";

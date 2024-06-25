@@ -17,6 +17,11 @@ $title=$request->title;
 $slug=Str::slug($title, separator: '-');
 $details=$request->content;
 
+
+$imageName = time().'.'.$request->featured_image->extension();
+$request->featured_image->move(storage_path('app/public/images'), $imageName);
+
+
 $exchange= new Exchange;
 
 $exchange->user_id= $user_id;
@@ -25,7 +30,7 @@ $exchange->request_skill_id=$request_skill_id;
 $exchange->title=$title;
 $exchange->slug=$slug;
 $exchange->details=$details;
-
+$exchange->featured_image='images/' . $imageName;
 
 $exchange->save();
 

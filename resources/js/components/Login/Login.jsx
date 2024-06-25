@@ -1,6 +1,6 @@
 import React from 'react'
 import Swal from "sweetalert2";
-import ImagesData from '../../assets/images/signup_images.json'
+import ImagesData from '../../assets/images/abc.jpg'
 import { Link,NavLink, useNavigate } from 'react-router-dom'
 import { useState,useContext } from 'react';
 import { AuthContext } from '../Auth/AuthContext';
@@ -45,7 +45,7 @@ function Login() {
     <>
    
     {/* <!--====== Start breadcrumbs ======--> */}
-         <section class="breadcrumbs-area bg_cover bg-img" data-bg-img={`${ImagesData.image1}`}>
+         <section class="breadcrumbs-area bg_cover bg-img" data-bg-img={ImagesData} style={{backgroundImage: `url(${ImagesData})` }}>
              <div class="container">
                  <div class="row">
                      <div class="col-lg-6">
