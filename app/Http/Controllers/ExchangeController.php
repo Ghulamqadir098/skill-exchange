@@ -37,5 +37,11 @@ $exchange->save();
 return response()->json(['message'=>'Exchange Created Successfully']);
 }
 
+public function single_exchange($id){
 
+$exchange= Exchange::find($id);
+
+
+return response()->json(['exchange'=>$exchange],200);
+}
 }

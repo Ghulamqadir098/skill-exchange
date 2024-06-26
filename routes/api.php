@@ -18,12 +18,12 @@ Route::get('/user_with_exchange',[UserController::class,'user_with_exchange'])->
 
 // Skill Routes
 Route::get('/get_skills',[SkillController::class,'get_skills'])->middleware('auth:sanctum');
-
+Route::get('get_all_skills',[SkillController::class,'get_all_skills']);
 
 
 // Exchange Routes
 Route::post('create-exchange',[ExchangeController::class,'create_exchange'])->middleware('auth:sanctum');
-
+Route::get('single_exchange/{id}',[ExchangeController::class,'single_exchange'])->middleware('auth:sanctum');
 
 Route::get('/user', function (Request $request) {
 

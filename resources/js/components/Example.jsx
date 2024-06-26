@@ -8,6 +8,7 @@ import Signup from './Signup/Signup.jsx'
 import Login from './Login/Login.jsx'
 import Create_Exchange from './Exchange/Create_Exchange.jsx'
 import Profile from './User/Profile.jsx'
+import ExchangeView from './Exchange/ExchangeView.jsx'
 
 const router= createBrowserRouter(createRoutesFromElements(
 
@@ -18,6 +19,7 @@ const router= createBrowserRouter(createRoutesFromElements(
     <Route path='login' element={<Login />} />
     <Route path='create_exchange' element={<Create_Exchange/>}/>
     <Route path='user_profile' element={<Profile />}  />
+    <Route path='single_exchange/:id' element={<ExchangeView />} />
     </Route>
   
     ));

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ImagesData from '../../assets/images/images.json'
 import { useEffect } from 'react';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 function Home() {
 
 const[users,setUsers]=useState([]);
@@ -234,7 +235,19 @@ src={`storage/${user.exchange.featured_image}`} className='object-fit-contain' s
             </div>
         </div>
         <div className="service-content">
-            <h4 className="title"><a href="#">{user.exchange.title}</a></h4>
+            <h4 className="title">
+                
+            <NavLink
+            to={`single_exchange/${user.exchange.id}`}
+            >
+
+            {user.exchange.title}
+
+            </NavLink>
+
+
+            </h4>
+
             <div className="rating-info">
                 <div className="rate">
                     <div className="rating">

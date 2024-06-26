@@ -66,4 +66,13 @@ $all_skills=Skill::all();
 return response()->json(['skills' => $skills, 'all_skills' => $all_skills]);
 
 }
+
+public function get_all_skills(){
+
+$skill=Skill::all();
+
+
+return response()->json(['skill' => $skill]);
+}
+
 }
